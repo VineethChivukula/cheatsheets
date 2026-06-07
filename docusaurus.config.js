@@ -6,6 +6,9 @@
 
 import { themes as prismThemes } from "prism-react-renderer";
 
+const prismDarkTheme = require("./src/theme/prismDarkTheme.js");
+const prismLightTheme = require("./src/theme/prismLightTheme.js");
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
@@ -29,10 +32,9 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "vineethchivukula", // Usually your GitHub org/user name.
   projectName: "cheatsheets", // Usually your repo name.
-  deploymentBranch: 'gh-pages', // The branch GitHub Pages reads from
+  deploymentBranch: "gh-pages", // The branch GitHub Pages reads from
   trailingSlash: false, // Recommended for GitHub Pages SEO
 
-  
   onBrokenLinks: "throw",
 
   // Even if you don't use internationalization, you can use this field to set
@@ -155,8 +157,9 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Vineeth Chivukula. Inspired from React Native Docs.`,
       },
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        additionalLanguages: ["sql"],
+        theme: prismLightTheme,
+        darkTheme: prismDarkTheme,
       },
     }),
 };
