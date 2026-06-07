@@ -1259,3 +1259,93 @@ FROM students; -- Divides the student body into 4 performance quartiles (1 to 4)
 ```
 
 ---
+
+### Common Table Expressions
+
+A Common Table Expression (CTE) is a temporary named result set that you can reference within a subsequent `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. They act as virtual tables that exist only for the duration of that single query execution, making complex queries far more readable than deeply nested subqueries.
+
+#### Syntax
+
+```
+WITH cte_name [(column_list)] AS (
+    SELECT_statement_defining_the_cte
+)
+SELECT_statement_using_the_cte;
+```
+
+#### Examples
+
+Define a single temporary result set to pre-calculate high-performing students, then filter the virtual dataset in the main query.
+
+```sql
+WITH honor_roll AS (
+    SELECT student_id, first_name, last_name, gpa
+    FROM students
+    WHERE gpa >= 3.5
+)
+SELECT first_name, last_name, gpa
+FROM honor_roll
+WHERE gpa > 3.9;
+```
+
+Define multiple, comma-separated CTEs where the second CTE references the first one to create a modular data processing pipeline.
+
+```sql
+WITH dept_averages AS (
+    SELECT department, AVG(gpa) AS avg_gpa
+    FROM students
+    GROUP BY department
+),
+top_departments AS (
+    SELECT department, avg_gpa
+    FROM dept_averages
+    WHERE avg_gpa >= 3.0
+)
+SELECT d.department, d.avg_gpa, c.title
+FROM top_departments d
+INNER JOIN courses c ON d.department = c.department;
+```
+
+---
+
+### Recursive CTEs
+
+A specialized variation of a CTE that references itself. It is used to traverse hierarchical, graph-based, or tree-structured data by looping through rows until a termination condition is met.
+
+#### Syntax
+
+```
+WITH RECURSIVE cte_name AS (
+    -- Anchor Member: Establishes the base starting row(s)
+    SELECT_statement1
+
+    UNION [ALL]
+
+    -- Recursive Member: References cte_name to loop through next levels
+    SELECT_statement2 WHERE termination_condition
+)
+SELECT * FROM cte_name;
+```
+
+#### Examples
+
+Traverse a hierarchical course prerequisite chain to find all sequential courses required to unlock an advanced 400-level course.
+
+```sql
+WITH RECURSIVE course_path AS (
+    -- Anchor Member: Start with the advanced target course
+    SELECT course_id, title, prerequisite_id
+    FROM courses
+    WHERE title = 'Advanced Quantum Physics'
+
+    UNION ALL
+
+    -- Recursive Member: Join the CTE back to the base table to find the next prerequisite row
+    SELECT c.course_id, c.title, c.prerequisite_id
+    FROM courses c
+    INNER JOIN course_path cp ON c.course_id = cp.prerequisite_id
+)
+SELECT * FROM course_path;
+```
+
+---
