@@ -45,6 +45,17 @@ const config = {
     locales: ["en"],
   },
   plugins: ["docusaurus-plugin-sass"],
+  themes: [
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        language: ["en"],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
   presets: [
     [
       "classic",
@@ -144,7 +155,7 @@ const config = {
             title: "Sponsor Me",
             items: [
               {
-                label: "Repo",
+                label: "Github Sponsor",
                 href: "https://github.com/sponsors/VineethChivukula",
               },
               {
