@@ -4,8 +4,6 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import { themes as prismThemes } from "prism-react-renderer";
-
 const prismDarkTheme = require("./src/theme/prismDarkTheme.js");
 const prismLightTheme = require("./src/theme/prismLightTheme.js");
 
