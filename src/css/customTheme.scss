@@ -208,6 +208,68 @@ html[data-theme="dark"] {
   }
 }
 
+.mermaid {
+  background: transparent;
+  border-radius: var(--ifm-global-radius);
+  padding: 0.5rem 0;
+  overflow: auto;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  font-family: var(--ifm-font-family-base) !important;
+  background: transparent;
+}
+
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path,
+.mermaid .cluster rect {
+  fill: var(--ifm-color-emphasis-200) !important;
+  stroke: var(--ifm-color-primary) !important;
+  stroke-width: 1.5px !important;
+}
+
+html[data-theme="dark"] .mermaid .node rect,
+html[data-theme="dark"] .mermaid .node circle,
+html[data-theme="dark"] .mermaid .node ellipse,
+html[data-theme="dark"] .mermaid .node polygon,
+html[data-theme="dark"] .mermaid .node path,
+html[data-theme="dark"] .mermaid .cluster rect {
+  fill: rgba(97, 218, 251, 0.12) !important;
+  stroke: var(--ifm-color-primary) !important;
+}
+
+.mermaid .nodeLabel,
+.mermaid .edgeLabel,
+.mermaid .label,
+.mermaid .cluster-label {
+  color: var(--ifm-font-color-base) !important;
+  fill: var(--ifm-font-color-base) !important;
+  font-family: var(--ifm-font-family-base) !important;
+}
+
+html[data-theme="dark"] .mermaid .nodeLabel,
+html[data-theme="dark"] .mermaid .edgeLabel,
+html[data-theme="dark"] .mermaid .label,
+html[data-theme="dark"] .mermaid .cluster-label {
+  color: var(--home-text) !important;
+  fill: var(--home-text) !important;
+}
+
+.mermaid .edgePath .path {
+  stroke: var(--ifm-color-primary) !important;
+  stroke-width: 1.8px !important;
+}
+
+.mermaid .arrowheadPath {
+  fill: var(--ifm-color-primary) !important;
+  stroke: var(--ifm-color-primary) !important;
+}
+
 ::marker {
   color: var(--ifm-font-color-secondary);
 }

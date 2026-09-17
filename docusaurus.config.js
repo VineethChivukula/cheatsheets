@@ -53,6 +53,7 @@ const config = {
         explicitSearchResultPath: true,
       },
     ],
+    "@docusaurus/theme-mermaid",
   ],
   presets: [
     [
@@ -90,6 +91,9 @@ const config = {
       }),
     ],
   ],
+  markdown: {
+    mermaid: true,
+  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -97,6 +101,12 @@ const config = {
         defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: true,
+      },
+      mermaid: {
+        theme: {
+          light: "base",
+          dark: "base",
+        },
       },
       navbar: {
         title: "Cheatsheets",
@@ -145,7 +155,7 @@ const config = {
             items: [
               {
                 label: "Portfolio",
-                href: "https://vineethchivukula.github.io/portfolio",
+                href: "https://vineethchivukula.vercel.app",
               },
             ],
           },
