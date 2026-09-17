@@ -260,7 +260,8 @@ html[data-theme="dark"] {
 
 .main-wrapper {
   max-width: 1400px;
-  width: 1400px;
+  width: 100%;
+  box-sizing: border-box;
   align-self: center;
   font-weight: 300;
 
@@ -328,7 +329,8 @@ hr {
 .table-wrapper {
   border: 1px solid var(--ifm-table-border-color);
   border-radius: var(--ifm-global-radius);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow: var(--ifm-table-box-shadow);
   margin-bottom: var(--ifm-spacing-vertical);
 }
@@ -419,6 +421,7 @@ hr {
   table {
     display: table;
     width: 100%;
+    min-width: 36rem;
     table-layout: fixed;
     margin-bottom: 0;
 
